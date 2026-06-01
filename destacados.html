@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 2: Tarjetas seleccionables</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="contenedor-principal">
+    <h1>Ejercicio 2: Tarjetas seleccionables</h1>
+    <p class="descripcion">Hacer clic en las tarjetas para marcar o desmarcar con <code>classList.toggle</code>.</p>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="destacados.html">Destacados</a>
+      <a href="listado.html">Listado</a>
+    </nav>
+    <div class="seccion">
+      <p id="contador">Seleccionadas: 0</p>
+      <div id="cards-container"></div>
+    </div>
+  </div>
+<!-- Ejercicio 2: tarjetas seleccionables con classList -->
+  <script>
+    var items = [
+    { titulo: "Película: Interstellar", detalle: "Dirigida por Christopher Nolan en 2014. Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad." },
+    { titulo: "Juego: Minecraft", detalle: "Juego de construcción y supervivencia lanzado en 2011. Es el videojuego más vendido de la historia con más de 300 millones de copias." },
+    { titulo: "Canción: Bohemian Rhapsody", detalle: "Publicada por Queen en 1975. Mezcla rock, ópera y balada en casi 6 minutos, sin seguir ninguna estructura tradicional." },
+    { titulo: "Comida: Sushi",  detalle: "Plato japonés que combina arroz avinagrado con pescado crudo o cocido. Tiene más de 200 años de historia." }
+  ];
+
+    var contenedor = document.getElementById("cards-container");
+    var contadorEl = document.getElementById("contador");
+
+    function actualizarContador() {
+      var n = document.querySelectorAll(".card.seleccionada").length;
+      contadorEl.textContent = "Seleccionadas: " + n;
+    }
+
+    items.forEach(function(item) {
+      var div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = "<h3>" + item.titulo + "</h3><p>" + item.detalle + "</p>";
+      div.addEventListener("click", function() {
+        div.classList.toggle("seleccionada");
+        actualizarContador();
+      });
+      contenedor.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
